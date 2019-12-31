@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>2020你好</title>
+    <meta charset="utf-8">
+    <style type="text/css">
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        background: url(images/by.jpg) no-repeat;
+        background-size: 100% 100%;
+        color: #37cae0;
+        font-size: 18px;
+    }
+
+    p,
+    div,
+    ul,
+    li {
+        margin: 0;
+        padding: 0;
+    }
+
+    #content {
+        width: 666px;
+        margin: 0 auto;
+        box-sizing: border-box;
+        padding:0 99px;
+    }
+
+    #textid {
+        color: #ff0000;
+        margin-top: 20px;
+    }
+
+    #title {
+        width: 100%;
+        font-size: 26px;
+        height: 100px;
+        text-align: center;
+        line-height: 100px;
+        color: #bd3636;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="content">
+        <p id="title"><span id="tit">YHC欢迎走进2020</span></p>
+        <div id="text">
+            <div><span>距离2020</span><span id="oldtime"></span></div>
+            <div>now time: <span id="nowtime"></span></div>
+            <div id="textid">你好2020,期待你的到来，过去已是往亦，珍惜期望在于当下与未来，希望2020精彩幸运的一年</div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    var oldtime = document.getElementById("oldtime");
+    var nowtime = document.getElementById("nowtime");
+    timelol();
+
+    function timelol() {
+        var endDate = new Date('2020-01-01 00:00:00');
+        var nowDate = new Date();
+        var cnum = endDate - nowDate;
+        var txte = '';
+        var totalSeconds;
+        if (cnum > 0) {
+            txte = "还剩："
+            totalSeconds = parseInt((endDate - nowDate) / 1000);
+        } else {
+            txte = "已经："
+            totalSeconds = parseInt((nowDate - endDate) / 1000);
+        }
+        var days = Math.floor(totalSeconds / (60 * 60 * 24));
+        var modulo = totalSeconds % (60 * 60 * 24);
+        var hours = Math.floor(modulo / (60 * 60));
+        hours = hours < 10 ? ("0" + hours) : hours
+        modulo = modulo % (60 * 60);
+        var minutes = Math.floor(modulo / 60);
+        minutes = minutes < 10 ? ("0" + minutes) : minutes
+        var seconds = modulo % 60;
+        seconds = seconds < 10 ? ("0" + seconds) : seconds
+        document.getElementById("oldtime").innerHTML = txte + days + "天" + hours + "小时" + minutes + "分钟" + seconds + "秒";
+
+        var oldtim = setTimeout("timelol()", 1000);
+    }
+    now()
+    function now() {
+        var date = new Date();
+        var Y = date.getFullYear();
+        var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1);
+        var D = date.getDate();
+        var h = date.getHours();
+        var m = date.getMinutes();
+        var s = date.getSeconds();
+        document.getElementById("nowtime").innerHTML = Y + "年" + M + "月" + D + "日" + h + "小时" + m + "分钟" + s + "秒";
+        var timer = setTimeout("now()", 1000);
+    }
+    </script>
+</body>
+
+</html>
